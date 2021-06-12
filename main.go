@@ -31,8 +31,6 @@ func main() {
 			return err
 		})
 		group.Go(func() error {
-			// warning: 此处可能存在问题，若当前server能正常启动，另一server启动失败(比如Listen的时候返回了错误)，
-			// 则当前server可能先shutdown,后serve, 在main goroutine退出前，可能会放进来几个request
 			fmt.Println("http server listening on ", server.Addr)
 			return server.ListenAndServe()
 		})
