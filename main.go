@@ -14,7 +14,7 @@ import (
 
 func main() {
 
-	addrs := [...]string{":800001", ":8001"}
+	addrs := [...]string{":8000", ":8001"}
 	group, ctx := errgroup.WithContext(context.Background())
 	for i, addr := range addrs {
 		handleFunc := handleHello1
@@ -57,7 +57,7 @@ func main() {
 func newHttpServer(addr string, handleFunc func(w http.ResponseWriter, r *http.Request)) *http.Server {
 
 	mux := http.NewServeMux()
-	mux.HandleFunc("/hello1", handleFunc)
+	mux.HandleFunc("/hello", handleFunc)
 	return &http.Server{
 		Addr: addr,
 		Handler: mux,
